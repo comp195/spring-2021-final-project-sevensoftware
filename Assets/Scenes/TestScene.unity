@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 137
+      value: 140.40001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 127.4
+      value: 118.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -246,6 +246,7 @@ MonoBehaviour:
   - {fileID: 8577505433255599161, guid: 59895b6b63672b049a9351778a7360f4, type: 3}
   - {fileID: 33194634652809266, guid: 515fee24c62965846ad368faa007fc71, type: 3}
   - {fileID: 6776807706535819101, guid: a92e325e63e0cc3429d9dcb9495bf755, type: 3}
+  - {fileID: 6488461624191272142, guid: 4a55684bc12e6d242ba14fb8b5fb2c34, type: 3}
   NUM_CHUNKS: 100
   DISTANCE_BETWEEN_CHUNKS: 45
 --- !u!4 &480503658
