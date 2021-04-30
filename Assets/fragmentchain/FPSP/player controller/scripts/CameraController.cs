@@ -6,17 +6,18 @@ public class CameraController : MonoBehaviour
 {
 
     [Header("Mouse Sensitivity")]
-        [Range(0.0f, 20.0f)]
+    [Range(0.0f, 20.0f)]
     public float mouseSensitivity;
     public float initialMouseSensitivity;
-        [Tooltip("Divide mouse sensitivity by this when sliding")] [Range(1.0f, 4.0f)]
+    [Tooltip("Divide mouse sensitivity by this when sliding")]
+    [Range(1.0f, 4.0f)]
     public float slideMouseSensMod;
 
     [Header("Rotation Clamping")]
     private Vector3 currentCamRotation;
 
     [Header("Wallrun Tilting")]
-        [Range(0.0f, 1.0f)]
+    [Range(0.0f, 1.0f)]
     public float tiltSpeed;
     public float alignSpeed;
     private float wallrunCamTiltCounter;
@@ -34,14 +35,14 @@ public class CameraController : MonoBehaviour
     private Vector3 initalCamLocalPos;
     private float camLocalPosReturnTimer;
 
-    [Header("GFX")]
-    public float speedLinesMaxSpeed;
+    // [Header("GFX")]
+    // public float speedLinesMaxSpeed;
 
     [Header("References")]
     private PlayerController controller;
     private Camera cam;
     private PlayerMovement movement;
-    private ParticleSystem speedLines;
+    // private ParticleSystem speedLines;
 
 
 
@@ -54,13 +55,13 @@ public class CameraController : MonoBehaviour
         cam = Camera.main;
         controller = GetComponent<PlayerController>();
         movement = GetComponent<PlayerMovement>();
-        speedLines = GameObject.Find("SpeedLines").GetComponent<ParticleSystem>();
+        // speedLines = GameObject.Find("SpeedLines").GetComponent<ParticleSystem>();
 
         //Initial Values
         initialMouseSensitivity = mouseSensitivity;
         initalCamLocalPos = cam.transform.localPosition;
     }
-    void Update()
+    void LateUpdate()
     {
         if (!controller.isPaused)
         {
@@ -102,51 +103,52 @@ public class CameraController : MonoBehaviour
     }
     void DefaultCameraUpdate()//Moves the FPP camera according to player input
     {
-        transform.Rotate(0f, (Input.GetAxis("Mouse X") * mouseSensitivity) * 100 * Time.deltaTime, 0f, Space.World); // Player body is rotated, cam inherits rotation
+        transform.Rotate(0f, (Input.GetAxis("Mouse X") * mouseSensitivity) * 20 * Time.fixedDeltaTime, 0f, Space.World); // Player body is rotated, cam inherits rotation
+
 
         //Camera Pitch Clamping system, might need a rework
-        if(currentCamRotation.x >= -85 && currentCamRotation.x <= 70) 
+        if (currentCamRotation.x >= -85 && currentCamRotation.x <= 70)
         {
-            cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+            cam.transform.Rotate(Mathf.Clamp(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, -90f, 90f), 0f, 0f);
         }
         else if (currentCamRotation.x >= -65)
         {
             if (Input.GetAxis("Mouse Y") > 0)
             {
-                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+                cam.transform.Rotate(Mathf.Clamp(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, -90f, 90f), 0f, 0f);
             }
         }
         else if (currentCamRotation.x <= 85)
         {
             if (Input.GetAxis("Mouse Y") < 0)
             {
-                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+                cam.transform.Rotate(Mathf.Clamp(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, -90f, 90f), 0f, 0f);
             }
         }
 
         return;
     }
     void WallrunCameraUpdate()
-    {  
-        cam.transform.Rotate(0f, (Input.GetAxis("Mouse X") * mouseSensitivity) * 100 * Time.deltaTime, 0f, Space.World); // Only cam is rotated, not the player body
+    {
+        cam.transform.Rotate(0f, (Input.GetAxis("Mouse X") * mouseSensitivity) * 20 * Time.fixedDeltaTime, 0f, Space.World); // Only cam is rotated, not the player body
 
         //Camera Pitch Clamping system, might need a rework
         if (currentCamRotation.x >= -85 && currentCamRotation.x <= 70)
         {
-            cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+            cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, 0f, 0f);
         }
         else if (currentCamRotation.x >= -65)
         {
             if (Input.GetAxis("Mouse Y") > 0)
             {
-                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, 0f, 0f);
             }
         }
         else if (currentCamRotation.x <= 85)
         {
             if (Input.GetAxis("Mouse Y") < 0)
             {
-                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 100 * Time.deltaTime, 0f, 0f);
+                cam.transform.Rotate(-(Input.GetAxis("Mouse Y") * mouseSensitivity) * 20 * Time.fixedDeltaTime, 0f, 0f);
             }
         }
 
@@ -236,7 +238,7 @@ public class CameraController : MonoBehaviour
 
         if (Mathf.Cos(headbobTimer) <= 0)
         {
-        headbobTimer += Time.deltaTime * headbobSpeed;
+            headbobTimer += Time.deltaTime * headbobSpeed;
         }
         else
         {
@@ -260,10 +262,10 @@ public class CameraController : MonoBehaviour
         currentCamRotation = cam.transform.localRotation.eulerAngles;
         if (currentCamRotation.x > 180) currentCamRotation.x = currentCamRotation.x - 360;
     }
-    void SpeedLines()
-    {
-        float lineAlpha = controller.horizontalSpeed / speedLinesMaxSpeed;
-        ParticleSystem.MainModule psmain = speedLines.main;
-        psmain.startColor = new Color(1, 1, 1, lineAlpha);
-    }
+    // void SpeedLines()
+    // {
+    //     float lineAlpha = controller.horizontalSpeed / speedLinesMaxSpeed;
+    //     ParticleSystem.MainModule psmain = speedLines.main;
+    //     psmain.startColor = new Color(1, 1, 1, lineAlpha);
+    // }
 }
