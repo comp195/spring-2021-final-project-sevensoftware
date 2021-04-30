@@ -97,7 +97,7 @@ public class CameraController : MonoBehaviour
                     break;
             }
 
-            SpeedLines();
+            // SpeedLines();
         }
     }
     void DefaultCameraUpdate()//Moves the FPP camera according to player input
