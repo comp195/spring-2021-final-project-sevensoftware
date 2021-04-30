@@ -18,17 +18,14 @@ public class LinearLevelGenerator : MonoBehaviour
         currentLocation = start.gameObject.GetComponent<StartingZoneInfo>().length;
         currentElevation = start.gameObject.GetComponent<StartingZoneInfo>().elevationChange;
 
-        generateNewChunk();
-        generateNewChunk();
-        generateNewChunk();
-        generateNewChunk();
-        generateNewChunk();
+        for (int i = 0; i < 10; i++)
+            generateNewChunk();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void generateNewChunk()
