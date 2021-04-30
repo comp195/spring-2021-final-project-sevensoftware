@@ -47,6 +47,9 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+
         //References
         cam = Camera.main;
         controller = GetComponent<PlayerController>();
