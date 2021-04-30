@@ -804,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364901686331684193}
-  - component: {fileID: 5364901686331684190}
+  - component: {fileID: 4413509012932829502}
   m_Layer: 0
   m_Name: StartingZone
   m_TagString: Untagged
@@ -837,7 +837,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &5364901686331684190
+--- !u!114 &4413509012932829502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,10 +846,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5364901686331684192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956328a2151355444bd1e740d4fe561a, type: 3}
+  m_Script: {fileID: 11500000, guid: 92a2cec7501bcd64ea7f99fa1dd39ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   length: 203
+  elevationChange: -7
 --- !u!1 &5364901686462620636
 GameObject:
   m_ObjectHideFlags: 0
