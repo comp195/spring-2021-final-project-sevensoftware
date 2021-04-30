@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     public string jump;
     public string slowWalk;
     public string crouch;
-    // public string dash;
+    public string dash;
 
     [Header("Directional Keys")]
     public Vector2 moveInputDir;
@@ -52,14 +52,14 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKey(crouch)) { return true; }
         return false;
     }
-    // public bool HoldDash()
-    // {
-    //     if (Input.GetKey(dash)) { return true; }
-    //     return false;
-    // }
-    // public bool ReleasedDash()
-    // {
-    //     if (Input.GetKeyUp(dash)) { return true; }
-    //     return false;
-    // }
+    public bool HoldDash()
+    {
+        // if (Input.GetKey(dash)) { return true; }
+        return false;
+    }
+    public bool ReleasedDash()
+    {
+        // if (Input.GetKeyUp(dash)) { return true; }
+        return false;
+    }
 }

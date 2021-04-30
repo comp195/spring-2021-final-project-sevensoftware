@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class StartingZoneInfo : MonoBehaviour
 {
-    // public float length = 
+    public float length = 203f;
+    public float elevationChange = -7f;
 }
