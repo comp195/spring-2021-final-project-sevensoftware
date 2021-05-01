@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LinearLevelGenerator : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LinearLevelGenerator : MonoBehaviour
     private float currentLocation;
     private float currentElevation;
     public const int NUM_GENERATED_CHUNKS = 3;
+    private const float DEATH_DISTANCE = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,8 @@ public class LinearLevelGenerator : MonoBehaviour
             Destroy(currentlyGenerated.Dequeue());
             generateNewChunk();
         }
+
+        checkDeath();
     }
 
     private void generateNewChunk()
@@ -52,5 +56,13 @@ public class LinearLevelGenerator : MonoBehaviour
         currentlyGenerated.Enqueue(Instantiate(prefabs[index], new Vector3(currentLocation, currentElevation, 0), Quaternion.identity));
         currentLocation += prefabs[index].gameObject.GetComponent<PieceInfo>().length;
         currentElevation += prefabs[index].gameObject.GetComponent<PieceInfo>().elevationChange;
+    }
+
+    private void checkDeath()
+    {
+        if (player.transform.position.y < currentElevation - DEATH_DISTANCE)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
