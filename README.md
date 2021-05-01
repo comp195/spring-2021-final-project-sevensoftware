@@ -11,3 +11,6 @@ Night Strider is a first-person parkour game where you gain new skills and abili
 - Level Generator
 - Audio/Visual Assets
 - Scoring System
+
+
+Music is [Retrograde](https://patriciataxxon.bandcamp.com/track/retrograde) by [Patricia Taxxon](https://patriciataxxon.bandcamp.com/).
