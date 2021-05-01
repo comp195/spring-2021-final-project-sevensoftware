@@ -9,7 +9,5 @@ Night Strider is a first-person parkour game where you gain new skills and abili
 ## Project Components
 - Character Controller
 - Level Generator
-- Enemy AI Controller
 - Audio/Visual Assets
 - Scoring System
-- Upgrade System
