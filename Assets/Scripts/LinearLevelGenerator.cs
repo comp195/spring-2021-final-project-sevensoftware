@@ -31,6 +31,8 @@ public class LinearLevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject.Find("Distance").GetComponent<UnityEngine.UI.Text>().text = Mathf.Floor(player.transform.position.x).ToString() + " meters";
+
         int i = 0;
         float xDistance = currentlyGenerated.Peek().transform.position.x;
         foreach (GameObject o in currentlyGenerated)

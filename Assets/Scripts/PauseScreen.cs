@@ -55,6 +55,8 @@ public class PauseScreen : MonoBehaviour
         endMenu.SetActive(true);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
+
+        GameObject.Find("ScoreText").GetComponent<UnityEngine.UI.Text>().text = "Score: " + Mathf.Floor(GameObject.Find("PlayerPrefab").transform.position.x).ToString() + " meters";
     }
 
     public void quit()
