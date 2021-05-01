@@ -52,7 +52,6 @@ public class LinearLevelGenerator : MonoBehaviour
     private void generateNewChunk()
     {
         int index = Random.Range(0, prefabs.Length);
-        Debug.Log(index);
         currentlyGenerated.Enqueue(Instantiate(prefabs[index], new Vector3(currentLocation, currentElevation, 0), Quaternion.identity));
         currentLocation += prefabs[index].gameObject.GetComponent<PieceInfo>().length;
         currentElevation += prefabs[index].gameObject.GetComponent<PieceInfo>().elevationChange;
@@ -62,7 +61,7 @@ public class LinearLevelGenerator : MonoBehaviour
     {
         if (player.transform.position.y < currentElevation - DEATH_DISTANCE)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameObject.Find("Canvas").GetComponent<PauseScreen>().die();
         }
     }
 }

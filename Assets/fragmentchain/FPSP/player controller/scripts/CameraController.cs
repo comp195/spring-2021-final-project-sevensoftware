@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (!controller.isPaused)
+        if (!controller.isPaused && (GameObject.Find("Canvas").GetComponent<PauseScreen>().state == PauseScreen.PauseState.Play))
         {
             CamRotationUnwrap();
 
